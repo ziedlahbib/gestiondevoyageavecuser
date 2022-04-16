@@ -33,7 +33,9 @@ public class FileStorageService {
 	    return FileDB.getId();
 	  }
   public void deletefile(Long idfile) {
-	  fileDBRepository.deleteById(idfile);
+	  FileDB f =fileDBRepository.findById(idfile).orElse(null);
+	  f.setTrip(null);
+	  fileDBRepository.delete(f);
   }
   public FileDB getFile(Long id) {
     return fileDBRepository.findById(id).orElse(null);

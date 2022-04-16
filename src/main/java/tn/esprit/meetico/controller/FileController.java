@@ -64,7 +64,7 @@ public class FileController {
   }
   	@DeleteMapping("/delete-file/{id-file}")
 	@ResponseBody
-	public void deletetrip( @PathVariable("id-file") Long idfile){
+	public void deletefile( @PathVariable("id-file") Long idfile){
 		storageService.deletefile(idfile);
   	}
   @GetMapping("/files")
