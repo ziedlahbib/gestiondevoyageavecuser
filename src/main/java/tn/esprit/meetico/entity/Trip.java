@@ -74,7 +74,7 @@ public class Trip implements Serializable{
 	
 	private User user;
 	
-	@OneToMany(mappedBy="trip",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="trip",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private List<FileDB> files;
 	

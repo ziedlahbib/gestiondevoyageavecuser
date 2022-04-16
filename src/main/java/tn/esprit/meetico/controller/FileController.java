@@ -96,6 +96,13 @@ public class FileController {
         .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
         .body(fileDB.getData());
   }
+  @GetMapping("/filestime/{id}")
+  public ResponseEntity<byte[]> getFiletime(@PathVariable Integer id) {
+    FileDB fileDB = storageService.getFiletime(id);
+    return ResponseEntity.ok()
+        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getName() + "\"")
+        .body(fileDB.getData());
+  }
   @GetMapping("/filesdetail/{id}")
   public FileDB getFiledetail(@PathVariable Long id) {
     return storageService.getFile(id);

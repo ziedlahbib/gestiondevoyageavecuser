@@ -2,6 +2,8 @@ package tn.esprit.meetico.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.stream.Stream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import tn.esprit.meetico.repository.TripRepository;
 
 @Service
 public class FileStorageService {
+	Long idf;
   @Autowired
   private FileDBRepository fileDBRepository;
   @Autowired
@@ -35,6 +38,23 @@ public class FileStorageService {
   public FileDB getFile(Long id) {
     return fileDBRepository.findById(id).orElse(null);
   }
+  public FileDB getFiletime(Integer id) {
+	    Trip t = tripRepo.findById(id).orElse(null);
+	     
+	    	Timer timer = new Timer();
+	    	TimerTask task = new TimerTask() {
+	            public void run() {
+	               for(FileDB f :t.getFiles())
+	               {
+	            	   idf= f.getId();
+	               }
+	            }
+	        };
+	         
+	        timer.schedule(task, 50, 50);
+			return getFile(idf);
+	    
+	  }
   
   public Stream<FileDB> getAllFiles() {
     return fileDBRepository.findAll().stream();
