@@ -478,13 +478,13 @@ public class TripServiceImpl implements ITripService{
 		return ls;
 	}
 	
-	@Scheduled(fixedRate = 600000)
+	@Scheduled(fixedRate = 1000)
 	@Override
 	public List<DestionationVisitorsCount> destionationVisitorsCountA() {
 		// TODO Auto-generated method stub
 		List<Trip> trip =tripRepo.findAll();
 		
-		DestionationVisitorsCount s= new DestionationVisitorsCount();
+		
 
 		//List<Integer> ns=new ArrayList<>();
 		//String destination=new String();
@@ -492,24 +492,27 @@ public class TripServiceImpl implements ITripService{
 			int n = 0 ;
 			for(Trip tr:trip) {
 				if(t.getDestination().equalsIgnoreCase(tr.getDestination())) {
+					
 					n++;
-
-					 s.setDetination(t.getDestination());
-					 s.setVisitnbr(n);
+					DestionationVisitorsCount sa= destionationVisitorsCountRepo.findBydetination(t.getDestination());
+					if(sa==null) {
+						DestionationVisitorsCount s=new DestionationVisitorsCount();
+						s.setDetination(t.getDestination());
+						 s.setVisitnbr(n);
+						 destionationVisitorsCountRepo.save(s);
+					}else
+					{
+						sa.setVisitnbr(n);
+						destionationVisitorsCountRepo.save(sa);
+						
+					}
+					 
 					
 				}
 				
 			}
 				
-			int nb=destionationVisitorsCountRepo.destination(s.getDetination());
-			log.info("s"+nb);
-			if(nb!=0)
-			{
-
-			}else {
-
-				destionationVisitorsCountRepo.save(s);
-			}
+		
 			
 		}
 		

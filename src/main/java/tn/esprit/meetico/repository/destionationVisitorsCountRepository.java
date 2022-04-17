@@ -14,5 +14,7 @@ public interface destionationVisitorsCountRepository extends JpaRepository<Desti
 	
 	@Query("Select count(*) FROM DestionationVisitorsCount r  where r.detination =:destination  ")
 	int destination(@Param("destination") String destination);
+	@Query("Select r FROM DestionationVisitorsCount r  where r.detination =:destination  ")
+	DestionationVisitorsCount findBydetination(@Param("destination") String destination);
 
 }
