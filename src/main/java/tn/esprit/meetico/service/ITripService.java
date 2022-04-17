@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import tn.esprit.meetico.entity.StatMeilleurDesitnation;
 import tn.esprit.meetico.entity.Trip;
 import tn.esprit.meetico.entity.User;
+import tn.esprit.meetico.entity.DestionationVisitorsCount;
 
 public interface ITripService {
 	
@@ -45,6 +46,8 @@ public interface ITripService {
 	public List<String> userDestionationsVisitsCount();
 
 	public List<String> destionationVisitorsCount();
+	
+	public List<DestionationVisitorsCount> destionationVisitorsCountA();
 	
 	public String meilleurDestination();
 	

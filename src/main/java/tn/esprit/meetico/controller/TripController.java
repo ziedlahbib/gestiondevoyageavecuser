@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.meetico.entity.DestionationVisitorsCount;
 import tn.esprit.meetico.entity.StatMeilleurDesitnation;
 import tn.esprit.meetico.entity.Trip;
 import tn.esprit.meetico.entity.User;
@@ -104,6 +105,12 @@ public class TripController {
 	@ResponseBody
 	public List<Trip> gettrips() {
 		return tripService.affichTrip();
+
+	}
+	@GetMapping("/get-DestionationVisitorsCount")
+	@ResponseBody
+	public List<DestionationVisitorsCount> destionationVisitorsCountA() {
+		return tripService.destionationVisitorsCountA();
 
 	}
 

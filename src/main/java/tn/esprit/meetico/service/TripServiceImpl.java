@@ -28,6 +28,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import org.springframework.stereotype.Service;
 
+import tn.esprit.meetico.entity.DestionationVisitorsCount;
 import tn.esprit.meetico.entity.FileDB;
 import tn.esprit.meetico.entity.Gender;
 import tn.esprit.meetico.entity.Note;
@@ -38,6 +39,7 @@ import tn.esprit.meetico.repository.FileDBRepository;
 import tn.esprit.meetico.repository.StatMeilleurDesitnationRepository;
 import tn.esprit.meetico.repository.TripRepository;
 import tn.esprit.meetico.repository.UserRepository;
+import tn.esprit.meetico.repository.destionationVisitorsCountRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,6 +72,9 @@ public class TripServiceImpl implements ITripService{
 	private EmailServiceImpl emailsend;
 	@Autowired
 	StatMeilleurDesitnationRepository srepo;
+	
+	@Autowired
+	destionationVisitorsCountRepository destionationVisitorsCountRepo;
 	/*
 	@Autowired
 	private FirebaseMessagingService firebasemessaging;
@@ -471,6 +476,46 @@ public class TripServiceImpl implements ITripService{
 		
 		
 		return ls;
+	}
+	
+	@Scheduled(fixedRate = 600000)
+	@Override
+	public List<DestionationVisitorsCount> destionationVisitorsCountA() {
+		// TODO Auto-generated method stub
+		List<Trip> trip =tripRepo.findAll();
+		
+		DestionationVisitorsCount s= new DestionationVisitorsCount();
+
+		//List<Integer> ns=new ArrayList<>();
+		//String destination=new String();
+		for(Trip t:trip) {
+			int n = 0 ;
+			for(Trip tr:trip) {
+				if(t.getDestination().equalsIgnoreCase(tr.getDestination())) {
+					n++;
+
+					 s.setDetination(t.getDestination());
+					 s.setVisitnbr(n);
+					
+				}
+				
+			}
+				
+			int nb=destionationVisitorsCountRepo.destination(s.getDetination());
+			log.info("s"+nb);
+			if(nb!=0)
+			{
+
+			}else {
+
+				destionationVisitorsCountRepo.save(s);
+			}
+			
+		}
+		
+		
+		
+		return destionationVisitorsCountRepo.findAll();
 	}
 /*
 	@Override
