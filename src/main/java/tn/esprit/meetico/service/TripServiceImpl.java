@@ -360,7 +360,7 @@ public class TripServiceImpl implements ITripService{
 			//s =t.getDestination()+"est visité"+n+"fois"+max_value;
 			//ls.add(s);
 		}
-		s="The favorite destination was " + destination + " with " + max_value + " visit(s).";
+		s= destination + " with " + max_value + " visit(s).";
 		
 		log.info(s);
 		
