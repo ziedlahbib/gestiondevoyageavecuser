@@ -211,6 +211,8 @@ public class TripController {
 		exporter.export(response);
 
 	}@GetMapping("/list-de-meilleur-destination")
+	
+	@GetMapping("/list-de-meilleur-destination")
 	@ResponseBody
 	public List<StatMeilleurDesitnation> listmeilleurdestination() {
 		return tripService.listmeilleurdestination();

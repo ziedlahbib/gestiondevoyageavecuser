@@ -25,7 +25,7 @@ import tn.esprit.meetico.service.IUserService;
 import tn.esprit.meetico.util.Member;
 import tn.esprit.meetico.util.UserAttribute;
 
-@CrossOrigin(origins = "*",exposedHeaders="Access-Control-Allow-Origin" )
+@CrossOrigin(origins = "http://localhost:4200/",exposedHeaders="Access-Control-Allow-Origin" )
 @RestController
 @Api(tags = "User Management")
 @RequestMapping("/user")

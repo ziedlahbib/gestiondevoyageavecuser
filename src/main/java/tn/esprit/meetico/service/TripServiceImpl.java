@@ -111,7 +111,7 @@ public class TripServiceImpl implements ITripService{
 		
 		}else {
 			log.info("we have no match");
-		}
+		}/*
 		User u = userRepo.findById(idEnt).orElse(null);
 		List<User> userss = userRepo.findAll();
 		for(User ur :userss) {
@@ -130,7 +130,7 @@ public class TripServiceImpl implements ITripService{
 				log.info("Message failed with error: " + response.getMessages().get(0).getErrorText());
 			}
 		}
-		
+		*/
 	}
 
 	@Override
@@ -184,7 +184,7 @@ public class TripServiceImpl implements ITripService{
 		trip.setUser(u);
 		tripRepo.save(trip);
 	
-		
+		/*
 		for(User ur :users) {
 			String number ="+216"+String.valueOf(ur.getPhoneNumber());
 			log.info(number);
@@ -203,7 +203,7 @@ public class TripServiceImpl implements ITripService{
 		}
 		
 		
-
+*/
 			
 		 return trip;
 	}
@@ -478,7 +478,7 @@ public class TripServiceImpl implements ITripService{
 		return ls;
 	}
 	
-	@Scheduled(fixedRate = 1000)
+	@Scheduled(fixedRate = 3600000)
 	@Override
 	public List<DestionationVisitorsCount> destionationVisitorsCountA() {
 		// TODO Auto-generated method stub

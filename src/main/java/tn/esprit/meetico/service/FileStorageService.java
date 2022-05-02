@@ -19,26 +19,30 @@ import tn.esprit.meetico.repository.TripRepository;
 public class FileStorageService {
 	Long idf;
   @Autowired
-  private FileDBRepository fileDBRepository;
+  private FileDBRepository fileDBRepo;
   @Autowired
   TripRepository tripRepo;
   public FileDB store(MultipartFile file) throws IOException {
     String fileName = StringUtils.cleanPath(file.getOriginalFilename());
     FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
-    return fileDBRepository.save(FileDB);
+    return fileDBRepo.save(FileDB);
   }public Long store1(MultipartFile file) throws IOException {
 	    String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 	    FileDB FileDB = new FileDB(fileName, file.getContentType(), file.getBytes());
-	    fileDBRepository.save(FileDB);
+	    fileDBRepo.save(FileDB);
 	    return FileDB.getId();
 	  }
   public void deletefile(Long idfile) {
-	  FileDB f =fileDBRepository.findById(idfile).orElse(null);
+	  FileDB f =fileDBRepo.findById(idfile).orElse(null);
 	  f.setTrip(null);
-	  fileDBRepository.delete(f);
+	  fileDBRepo.delete(f);
   }
   public FileDB getFile(Long id) {
-    return fileDBRepository.findById(id).orElse(null);
+    return fileDBRepo.findById(id).orElse(null);
+  }
+  public Trip gettripbyfile(Long id) {
+	  FileDB f = fileDBRepo.findById(id).orElse(null);
+	  return f.getTrip();
   }
   public FileDB getFiletime(Integer id) {
 	    Trip t = tripRepo.findById(id).orElse(null);
@@ -59,7 +63,7 @@ public class FileStorageService {
 	  }
   
   public Stream<FileDB> getAllFiles() {
-    return fileDBRepository.findAll().stream();
+    return fileDBRepo.findAll().stream();
   }
   public Stream<FileDB> getAllFilesBytrip(Integer id) {
 	  Trip t =tripRepo.findById(id).orElse(null);

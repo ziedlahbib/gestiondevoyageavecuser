@@ -106,7 +106,12 @@ public class FileController {
   @GetMapping("/filesdetail/{id}")
   public FileDB getFiledetail(@PathVariable Long id) {
     return storageService.getFile(id);
+    
    
+  }
+  @GetMapping("/filebytrip/{id}")
+  public Trip getFilebytrip(@PathVariable Long id) {
+    return storageService.gettripbyfile(id);
   }
   @GetMapping("/filesByTrip/{id}")
   public ResponseEntity<List<ResponseFile>> getListFilesByTRip(@PathVariable Integer id) {

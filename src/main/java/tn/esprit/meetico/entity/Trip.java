@@ -59,7 +59,7 @@ public class Trip implements Serializable{
 	private Date endDate;
 	
 	@NotEmpty(message = "object required")
-	@Size(max=40)
+	@Size(max=500)
 	private String object;
 	/*
 	@Lob
