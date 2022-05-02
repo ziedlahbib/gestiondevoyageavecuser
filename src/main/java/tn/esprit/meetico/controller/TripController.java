@@ -210,7 +210,7 @@ public class TripController {
 		TripPDF exporter = new TripPDF(trip, listuser);
 		exporter.export(response);
 
-	}@GetMapping("/list-de-meilleur-destination")
+	}
 	
 	@GetMapping("/list-de-meilleur-destination")
 	@ResponseBody
