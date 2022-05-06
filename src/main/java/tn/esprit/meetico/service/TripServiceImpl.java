@@ -579,4 +579,9 @@ public class TripServiceImpl implements ITripService{
 		
 		return u.getTripss();
 	}
+
+	@Override
+	public List<Trip> searchbydestination(String destination) {
+		return tripRepo.searchtrip(destination);
+	}
 }

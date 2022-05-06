@@ -120,6 +120,12 @@ public class TripController {
 
 		return tripService.afficherutilisateurbymatching(destination.toUpperCase(), startdate, city.toUpperCase());
 	}
+	@GetMapping("/get-trip-by-destination/{destination}")
+	public List<Trip> searchtripbydestination(@PathVariable("destination") String destination)
+			 {
+
+		return tripService.searchbydestination(destination.toUpperCase());
+	}
 
 	@PutMapping("/delete-user-from-trip/{id-trip}/{userid}")
 	@ResponseBody

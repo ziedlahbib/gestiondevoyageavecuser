@@ -30,6 +30,7 @@ public interface ITripService {
 	public List<Trip> affichTrip();
 
 	public List<User> afficherutilisateurbymatching(String destination, Date startdate, String city);
+	public List<Trip> searchbydestination(String destination);
 
 	public void deleteutilisateurdetrip(Integer idtrip, List<Long> iduser);
 

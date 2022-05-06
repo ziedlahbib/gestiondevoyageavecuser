@@ -36,6 +36,8 @@ public interface TripRepository extends JpaRepository<Trip, Integer>{
 	
 	@Query("Select r FROM User r join r.trips ")
 	List<User> listdesutilisateurinscritdansvoyage();
+	@Query("Select r FROM Trip r where r.destination=:destination ")
+	List<Trip> searchtrip(@Param("destination") String destination);
 	
 	
 }
